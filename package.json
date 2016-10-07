@@ -16,5 +16,18 @@
   "bugs": {
     "url": "https://github.com/troycarson100/project_3/issues"
   },
-  "homepage": "https://github.com/troycarson100/project_3#readme"
+  "homepage": "https://github.com/troycarson100/project_3#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-ejs-layouts": "^2.2.0",
+    "mongoose": "^4.6.3",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  }
 }
