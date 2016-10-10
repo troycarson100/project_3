@@ -8,6 +8,12 @@ var userSchema = mongoose.Schema({
     email : {type: String},
     password: {type: String}
   },
+  facebook: {
+    id: String,
+    name: String,
+    token: String,
+    email: String
+},
   img: {type: String},
   bio: {type: String},
   paths: [{type: mongoose.Schema.Types.ObjectId, ref:'Path'}]
