@@ -78,6 +78,11 @@ userRouter.get('/profile', isLoggedIn, function(req, res){
      res.render('profile', {user: req.user})
    })
 
+userRouter.get('/logout', function(req,res){
+  req.logout()
+  res.redirect('/')
+})
+
 function isLoggedIn(req,res,next){
   if(req.isAuthenticated()) return next()
   res.redirect('/')
@@ -89,17 +94,6 @@ function isLoggedIn(req,res,next){
 // not sure about how to get descriptions from blips
 // testRouter.get('/blip')
 // res.render('/blipInfo', {user: req.user})
-//
-//
-// testRouter.get('/logout', function(req, res){
-//  req.logout()
-//  res.redirect('/')
-// })
-//
-// function isLoggedIn(req, res, next){
-//  if(req.isAuthenticated()) return next()
-//  res.redirect('/')
-// }
 
 
 module.exports = userRouter
