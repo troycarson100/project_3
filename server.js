@@ -9,6 +9,7 @@ var
   bodyParser = require('body-parser'),
   session = require('express-session'),
   passport = require('passport'),
+  passportConfig = require('./config/passport.js')
   userRoutes = require('./routes/users.js')
 
 const PORT = process.env.PORT || 3000
