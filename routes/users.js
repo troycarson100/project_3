@@ -70,6 +70,7 @@ userRouter.route('/signup')
    res.render('signup', {message: req.flash('signup')})
  })
  .post(passport.authenticate('local-signup', {
+   // TODO save the user to mongodb here
    successRedirect: '/profile',
    failureRedirect: '/signup'
  }))
@@ -82,6 +83,13 @@ userRouter.get('/logout', function(req,res){
   req.logout()
   res.redirect('/')
 })
+
+userRouter.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))
+
+userRouter.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+}))
 
 function isLoggedIn(req,res,next){
   if(req.isAuthenticated()) return next()
