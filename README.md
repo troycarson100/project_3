@@ -57,3 +57,9 @@ ________
 # Wireframe
 [!pathLyfe WF]
 https://github.com/sundiata88/project_3/blob/master/Project%203%20WireFrame.png
+
+_______
+# More information
+
+(power point attached_
+
