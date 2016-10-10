@@ -10,7 +10,7 @@ passport.serializeUser(function(user,done){
 })
 // looks at the cookie and decodes it back into user object
 passport.deserializeUser(function(id,done){
-  User.findById(id, function(err, user){
+  User.findById(id).populate('paths').exec(function(err, user){
     done(err,user)
   })
 })

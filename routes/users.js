@@ -55,6 +55,15 @@ userRouter.route('/users/:id/paths')
   })
 })
 
+// // Individual Path From User:
+// userRouter.get('/users/:userId/paths/:pathId', function(req, res) {
+//   User.findById(req.params.userId).populate('paths').exec(function(err, user) {
+//     user.paths.select({_id: req.params.pathId}, function(err, path) {
+//       res.json(path)
+//     })
+//   })
+// })
+
 // SIGN UP AND SIGN IN ===============================
 
 userRouter.route('/login')

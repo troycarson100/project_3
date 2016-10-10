@@ -36,16 +36,21 @@ pathsRouter.route('/paths/:id')
       res.json(path)
     })
   })
-  // .delete(function(req, res){
-  //   User.findById(req.params.id, function(err, user){
-  //     if(err) return console.log(err)
-  //     user.paths.id(req.params.id).remove()
-  //     user.save(function(err){
-  //       if(err) return console.log(err)
-  //       res.json(user)
-  //     })
-  //   })
-  // })
+
+pathsRouter.route('/paths/:id/delete')
+  .get(function(req, res){
+    User.findById(req.user._id,function(err, user){
+      if(err) return console.log(err)
+      user.paths.id(req.params.id).remove()
+      user.save(function(err){
+        if(err) return console.log(err)
+        Path.findByIdAndRemove(req.params.id, function(err){
+          if(err) return console.log(err)
+          res.redirect('/profile')
+        })
+      })
+    })
+  })
 
 // post Path's blips:
 pathsRouter.route('/paths/:id/blips')
