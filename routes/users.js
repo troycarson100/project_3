@@ -2,7 +2,8 @@ var
  express = require('express'),
  passport = require('passport'),
  userRouter = express.Router(),
- User = require('../models/User.js')
+ User = require('../models/User.js'),
+ Path = require('../models/Path.js')
 
 
  // index of ALL users:

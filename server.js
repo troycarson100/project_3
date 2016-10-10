@@ -9,7 +9,8 @@ var
   bodyParser = require('body-parser'),
   session = require('express-session'),
   passport = require('passport'),
-  userRoutes = require('./routes/users.js')
+  userRoutes = require('./routes/users.js'),
+  pathRoutes = require('./routes/paths.js')
 
 const PORT = process.env.PORT || 3000
 
@@ -31,6 +32,7 @@ app.get('/',function(req, res){
 })
 
 app.use('/', userRoutes)
+app.use('/', pathRoutes)
 
 
 app.listen(PORT, function(){
