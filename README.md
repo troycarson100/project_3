@@ -45,6 +45,7 @@ Working as a group, we used the above-mentioned technologies to create an applic
 
 Our group delegated different pieces of the application to each other, so that we would be able to connect the pieces of code together for a working product. Using trello (linked below), we were able to track our progress throughout the project week.
 
+https://trello.com/b/dkezkiRe/pathlyfe
 _________
 # Unsolved problems
 
