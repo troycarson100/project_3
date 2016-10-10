@@ -10,7 +10,9 @@ var
   session = require('express-session'),
   passport = require('passport'),
   userRoutes = require('./routes/users.js'),
-  pathRoutes = require('./routes/paths.js')
+  pathRoutes = require('./routes/paths.js'),
+  passportConfig = require('./config/passport.js')
+
 
 const PORT = process.env.PORT || 3000
 
@@ -22,13 +24,24 @@ mongoose.connect('mongodb://localhost/project_3', function(err){
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+// ejs middelware
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(flash())
+// session + passport middleware
+app.use(session({
+  secret: "pathlyfe4lyfe",
+  cookie: {maxAge: 6000000},
+  resave: true,
+  saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 
 app.get('/',function(req, res){
-  res.json({message: "Welcome to the Root"})
+  res.render('index')
 })
 
 app.use('/', userRoutes)
