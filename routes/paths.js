@@ -15,21 +15,10 @@ pathsRouter.route('/paths')
   })
   .post(function(req, res){
     // This finds the first test user, to be replaced with req.user.local._id when passport is integrated to use the currently logged in user instead.
-<<<<<<< HEAD
-    User.findOne({}, function(err, user){
-      //if(err) return console.log(err)
-      var newPath = new Path(req.body)
-      console.log(req.body)
-      newPath._by = user
-      newPath.save(function(err, path){
-        console.log("This is path: " + path)
-        //TO - DO!!!!!!!!!!!! DEFINE PATH, IT IS UNDEFINED!!!!!!!!!!!!! RECEIVING NULL!!!!!!
-=======
     User.find(currentUser.id , function(err, user){
       var newPath = new Path(req.body)
       newPath._by = user
       newPath.save(function(err, path){
->>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
         user.paths.push(path)
         user.save(function(err, user){
           res.json(user)
@@ -39,10 +28,6 @@ pathsRouter.route('/paths')
   })
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
 // Single Path:
 pathsRouter.route('/paths/:id')
   .get(function(req, res) {
@@ -52,23 +37,6 @@ pathsRouter.route('/paths/:id')
     })
   })
 
-<<<<<<< HEAD
-pathsRouter.route('/paths/:id/delete')
-  .get(function(req, res){
-    User.findById(req.user._id,function(err, user){
-      if(err) return console.log(err)
-      user.paths.id(req.params.id).remove()
-      user.save(function(err){
-        if(err) return console.log(err)
-        Path.findByIdAndRemove(req.params.id, function(err){
-          if(err) return console.log(err)
-          res.redirect('/profile')
-        })
-      })
-    })
-  })
-
-=======
 
 pathsRouter.route('/paths/:id/delete')
   .get(function(req, res){
@@ -85,7 +53,6 @@ pathsRouter.route('/paths/:id/delete')
   })
 
 
->>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
 // post Path's blips:
 pathsRouter.route('/paths/:id/blips')
   .get(function(req, res) {
@@ -123,8 +90,6 @@ pathsRouter.route('/paths/:pathId/blips/:blipId')
       })
     })
   })
-<<<<<<< HEAD
-=======
   .patch(function(req, res){
     Path.findById(req.params.pathId, function(err, path) {
       // res.json(path.blips)
@@ -142,6 +107,5 @@ pathsRouter.route('/paths/:pathId/blips/:blipId')
     })
   })
 
->>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
 
 module.exports = pathsRouter
