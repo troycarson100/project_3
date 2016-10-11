@@ -1,5 +1,6 @@
 var
-  app = require('express')(),
+  express = require('express'),
+  app = express(),
   ejs = require('ejs'),
   ejsLayouts = require('express-ejs-layouts'),
   mongoose = require('mongoose'),
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 // ejs middelware
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+app.use(express.static(__dirname + '/public'))
 app.use(flash())
 // session + passport middleware
 app.use(session({
@@ -49,6 +51,10 @@ app.use(function(req, res, next){
 app.get('/',function(req, res){
   res.render('index')
 })
+app.get('/create', function(req, res){
+  res.render('create')
+})
+
 
 app.use('/', userRoutes)
 app.use('/', pathRoutes)

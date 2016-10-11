@@ -30,8 +30,15 @@ userRouter.route('/users/:id')
   User.findById(req.params.id).populate('paths').exec(function(err, user){
     if(err) return console.log(err)
     res.json(user)
+    })
   })
-})
+  // .patch(function(req, res){
+  //   User.findByIdAndUpdate(req.param.id, req.body, {new: true}, function(err, user){
+  //     if(err) return console.log(err)
+  //     // user.update({ name : user.name })
+  //     res.json(user)
+  //   })
+  // })
 
 
 userRouter.get('/profile/delete', function(req,res){
@@ -109,13 +116,6 @@ function isLoggedIn(req,res,next){
   if(req.isAuthenticated()) return next()
   res.redirect('/')
 }
-
-// =============================================
-
-
-// not sure about how to get descriptions from blips
-// testRouter.get('/blip')
-// res.render('/blipInfo', {user: req.user})
 
 
 module.exports = userRouter

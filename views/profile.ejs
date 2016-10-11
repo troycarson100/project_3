@@ -1,13 +1,14 @@
 <!-- /views/profile.ejs -->
-<div class="page-header">
+<div class="page-header col-sm-6 col-sm-offset-3">
     <h1><%= user.local.name %></h1>
-    <h4><a href="#">Create Path</a></h4>
+    <h4><a href="/create">Create Path</a></h4>
 </div>
 
+<h3>Your paths</h3>
 <% user.paths.forEach(function(p) { %>
   <%= p.name %>
-  <a href="/paths/<%= p._id %>/delete">X</a><br>
-<% }) %> 
+  <a href="/paths/<%= p._id %>/delete"> Delete</a><br>
+<% }) %>
 
 
 
