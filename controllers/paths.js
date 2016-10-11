@@ -53,3 +53,56 @@ function destroy(req, res){
       })
     })
 }
+
+function indexBlip(req, res) {
+  Path.findById(req.params.id, function(err, path) {
+    if(err) return console.log(err)
+    res.json(path.blips)
+  })
+}
+
+function createBlip(req, res) {
+  Path.findById(req.params.id, function(err, path) {
+    if(err) return console.log(err)
+    path.blips.push(req.body)
+    path.save(function(err) {
+      if(err) return console.log(err)
+      res.json(path)
+    })
+  })
+}
+
+function showBlip(req, res) {
+  Path.findById(req.params.pathId, function(err, path) {
+    if(err) return console.log(err)
+    res.json(path.blips.id(req.params.blipId))
+  })
+}
+
+function destroyBlip(req, res) {
+  Path.findById(req.params.pathId, function(err, path) {
+    if(err) return console.log(err)
+    path.blips.id(req.params.blipId).remove()
+    path.save(function(err) {
+      if(err) return console.log(err)
+      res.json(path)
+    })
+  })
+}
+
+function updateBlip(req, res){
+  Path.findById(req.params.pathId, function(err, path) {
+    // res.json(path.blips)
+    if(err) return res.json(err)
+    // // path.blips.id(req.params.blipId).update()
+    path.blips.forEach(function(blip){
+      if (blip._id == req.params.blipId){
+        blip.title = req.body.title
+        path.save(function(err){
+          if(err) return res.json(err)
+          res.json(path)
+        })
+      }
+    })
+  })
+}
