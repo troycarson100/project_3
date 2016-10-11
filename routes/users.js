@@ -23,7 +23,8 @@ userRouter.post('/users', function(req,res){
 })
 
 // get a single user:
-userRouter.get('/users/:id', function(req,res){
+userRouter.route('/users/:id')
+ .get(function(req,res){
   // When we find the user by _id, we replace its 'Path' array with an array of ACTUAL complete path objects using .populate()
   // THEN we execute the callback which sends the populated user to the client:
   User.findById(req.params.id).populate('paths').exec(function(err, user){
@@ -31,6 +32,17 @@ userRouter.get('/users/:id', function(req,res){
     res.json(user)
   })
 })
+
+
+userRouter.get('/profile/delete', function(req,res){
+    User.findByIdAndRemove(req.user._id, function(err){
+      if(err) return console.log(err)
+      Path.remove({_by: req.user._id}, function(err){
+        if(err) return console.log(err)
+        res.redirect('/logout')
+      })
+    })
+  })
 
 userRouter.route('/users/:id/paths')
 .post(function(req, res) {
@@ -54,6 +66,15 @@ userRouter.route('/users/:id/paths')
     })
   })
 })
+
+// // Individual Path From User:
+// userRouter.get('/users/:userId/paths/:pathId', function(req, res) {
+//   User.findById(req.params.userId).populate('paths').exec(function(err, user) {
+//     user.paths.select({_id: req.params.pathId}, function(err, path) {
+//       res.json(path)
+//     })
+//   })
+// })
 
 // SIGN UP AND SIGN IN ===============================
 

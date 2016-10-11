@@ -1,8 +1,17 @@
 <!-- /views/profile.ejs -->
 <div class="page-header">
     <h1><%= user.local.name %></h1>
-    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    <h4><a href="#">Create Path</a></h4>
 </div>
+
+<% user.paths.forEach(function(p) { %>
+  <%= p.name %>
+  <a href="/paths/<%= p._id %>/delete">X</a><br>
+<% }) %> 
+
+
+
+<br>
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
         <div class="well">

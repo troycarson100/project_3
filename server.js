@@ -39,6 +39,12 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use(function(req, res, next){
+	if(req.user) req.app.locals.currentUser = req.user
+	req.app.locals.loggedIn = !!req.user
+	next()
+})
+
 
 app.get('/',function(req, res){
   res.render('index')
