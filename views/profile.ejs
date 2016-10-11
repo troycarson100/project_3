@@ -1,0 +1,29 @@
+<!-- /views/profile.ejs -->
+<div class="page-header">
+    <h1><%= user.local.name %></h1>
+    <h4><a href="#">Create Path</a></h4>
+</div>
+
+<% user.paths.forEach(function(p) { %>
+  <%= p.name %>
+  <a href="/paths/<%= p._id %>/delete">X</a>
+<% }) %>
+
+
+
+
+
+<br>
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="well">
+            <h3>Locally Stored User</h3>
+                <p>
+                    <strong>Name</strong>: <%= user.local.name %><br>
+                    <strong>id</strong>: <%= user._id %><br>
+                    <strong>email</strong>: <%= user.local.email %><br>
+                    <strong>password</strong>: <%= user.local.password %>
+                </p>
+        </div>
+    </div>
+</div>

@@ -1,13 +1,14 @@
 
 <div class="col-sm-6 col-sm-offset-3">
 
-    <h1>Edit your blip</h1>
+    <h1>Create your blip!</h1>
 
-    <form action="/create" method="post">
+
+    <form action="/paths" method="post">
 
         <div class="form-group">
             <label for="blips">Blip Title</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" id="blipTitle">
         </div>
 
         <div class="dropdown">
@@ -21,43 +22,81 @@
 
             <div class="form-group">
                 <label for="duration">Duration</label>
-                <textarea class="form-control" rows="5" id="comment">
+                <textarea class="form-control" rows="5" id="duration">
                 </textarea>
             </div>
 
             <div class="form-group">
                 <label for="tags">Tags</label>
-                <textarea class="form-control" rows="5" id="comment">
+                <textarea class="form-control" rows="5" id="tags">
                 </textarea>
             </div>
 
         <div class="form-group">
             <label for="comment">Link</label>
-            <textarea class="form-control" rows="5" id="comment">
+            <textarea class="form-control" rows="5" id="link">
             </textarea>
         </div>
 
         <div class="form-group">
             <label for="timesUsed">Times completed or used</label>
-            <textarea class="form-control" rows="5" id="comment">
+            <textarea class="form-control" rows="5" id="timesUsed">
             </textarea>
           </div>
 
           <div class="form-group">
               <label for="description">Description</label>
-              <textarea class="form-control" rows="5" id="comment">
+              <textarea class="form-control" rows="5" id="description">
               </textarea>
           </div>
-
 
         <div class="form-group">
           <label for="blipSchema"></label>
           <input>
 
 
-        <button type="submit" class="btn btn-warning btn-lg">Create your pathLyfe</button>
+        <button type="submit" class="btn btn-warning btn-lg" id="pathButton">Create your pathLyfe</button>
     </form>
+<script>
+//$(function(){
+//  var form = $('#ajax-contact');
+//  var formSheet = ('#form-messages');
+  //$(form).submit(function(event){
+//    event.prefentDefault();
+//    var formData = $(form).serialize();
+//    $.ajax({
+//      method: 'post'
+  //    url: '/paths',
+//      data: formData
+//      dataType: 'application/json'
+//    })
+//  })
+//})
+var $pathBtn = $('#pathButton')
+$pathBtn.on(click, function(evt){
+   var $blipTitle = $('#blipTitle').val(),
+   var $duration = $('#duration').val(),
+   var $tags = $('#tags').val(),
+   var $link = $('#link').val(),
+   var $timeUsed = $('#timeUsed').val(),
+   var $description = $('#description').val()
 
+var opts = {
+  method: 'post',
+  url: '/paths',
+  contentType: 'application/json',
+  data: JSON.stringify({
+    title: $blipTitle
+  })
+}
+
+$.ajax(opts).done(cb)
+})
+
+
+
+
+</script>
     <hr>
 
 
