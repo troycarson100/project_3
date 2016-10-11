@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+
+=======
 # project_3
 
 # pathLyfe
@@ -64,3 +67,4 @@ _______
 
 
 (power point attached)
+>>>>>>> f1bf66d3a85bd24e062eb7bda34801b8554c924d
