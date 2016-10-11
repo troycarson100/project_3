@@ -1,5 +1,10 @@
 var
+<<<<<<< HEAD
   app = require('express')(),
+=======
+  express = require('express'),
+  app = express(),
+>>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
   ejs = require('ejs'),
   ejsLayouts = require('express-ejs-layouts'),
   mongoose = require('mongoose'),
@@ -27,6 +32,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 // ejs middelware
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+<<<<<<< HEAD
+=======
+app.use(express.static(__dirname + '/public'))
+>>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
 app.use(flash())
 // session + passport middleware
 app.use(session({
@@ -49,11 +58,19 @@ app.use(function(req, res, next){
 app.get('/',function(req, res){
   res.render('index')
 })
+<<<<<<< HEAD
 
 app.get('/test', function(req, res){
   res.render('create')
 })
 
+=======
+app.get('/create', function(req, res){
+  res.render('create')
+})
+
+
+>>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
 app.use('/', userRoutes)
 app.use('/', pathRoutes)
 

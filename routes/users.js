@@ -23,14 +23,42 @@ userRouter.post('/users', function(req,res){
 })
 
 // get a single user:
+<<<<<<< HEAD
 userRouter.get('/users/:id', function(req,res){
+=======
+userRouter.route('/users/:id')
+ .get(function(req,res){
+>>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
   // When we find the user by _id, we replace its 'Path' array with an array of ACTUAL complete path objects using .populate()
   // THEN we execute the callback which sends the populated user to the client:
   User.findById(req.params.id).populate('paths').exec(function(err, user){
     if(err) return console.log(err)
     res.json(user)
+<<<<<<< HEAD
   })
 })
+=======
+    })
+  })
+  // .patch(function(req, res){
+  //   User.findByIdAndUpdate(req.param.id, req.body, {new: true}, function(err, user){
+  //     if(err) return console.log(err)
+  //     // user.update({ name : user.name })
+  //     res.json(user)
+  //   })
+  // })
+
+
+userRouter.get('/profile/delete', function(req,res){
+    User.findByIdAndRemove(req.user._id, function(err){
+      if(err) return console.log(err)
+      Path.remove({_by: req.user._id}, function(err){
+        if(err) return console.log(err)
+        res.redirect('/logout')
+      })
+    })
+  })
+>>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
 
 userRouter.route('/users/:id/paths')
 .post(function(req, res) {
@@ -98,6 +126,7 @@ function isLoggedIn(req,res,next){
   res.redirect('/')
 }
 
+<<<<<<< HEAD
 // =============================================
 
 
@@ -105,5 +134,7 @@ function isLoggedIn(req,res,next){
 // testRouter.get('/blip')
 // res.render('/blipInfo', {user: req.user})
 
+=======
+>>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
 
 module.exports = userRouter

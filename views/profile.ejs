@@ -1,4 +1,5 @@
 <!-- /views/profile.ejs -->
+<<<<<<< HEAD
 <div class="page-header">
     <h1><%= user.local.name %></h1>
     <h4><a href="#">Create Path</a></h4>
@@ -7,12 +8,26 @@
 <% user.paths.forEach(function(p) { %>
   <%= p.name %>
   <a href="/paths/<%= p._id %>/delete">X</a>
+=======
+<div class="page-header col-sm-6 col-sm-offset-3">
+    <h1><%= user.local.name %></h1>
+    <h4><a href="/create">Create Path</a></h4>
+</div>
+
+<h3>Your paths</h3>
+<% user.paths.forEach(function(p) { %>
+  <%= p.name %>
+  <a href="/paths/<%= p._id %>/delete"> Delete</a><br>
+>>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
 <% }) %>
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 552688ca9ddf082b91e528fc09e385313b9c4bbe
 <br>
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
