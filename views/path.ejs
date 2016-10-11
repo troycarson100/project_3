@@ -1,0 +1,22 @@
+<h1><%= path.name %></h1>
+
+<%# SHOW ALL BLIPS%>
+<% path.blips.forEach(function(b) { %>
+  <div class="path-blip">
+
+    <div class="top-blip">
+      <h4><%= b.title %></h4>
+      <%= b.year %>
+      <%= b.kind %>
+    </div>
+    <br>
+    <div class="mid-blip">
+      <p><%= b.description %></p>
+    </div>
+
+    <div class="low-blip">
+      <%= b.link %>
+    </div>
+
+  </div>
+<% }) %>

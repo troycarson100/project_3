@@ -4,6 +4,7 @@ var
  userRouter = express.Router(),
  User = require('../models/User.js'),
  Path = require('../models/Path.js')
+ // userController = require('../controllers/users.js')
 
 
  // index of ALL users:

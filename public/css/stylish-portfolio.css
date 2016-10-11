@@ -15,9 +15,36 @@ body {
 body {
     font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+/*Our css!!! -Troy*/
 .lower-frame{
   padding-bottom: 48px;
 }
+
+.path-blip{
+  width: 400px;
+  height: 200px;
+  border: 2px dashed black;
+}
+.top-blip{
+  width: 400px;
+  height: 50px;
+}
+.top-blip h4 {
+  display: inline;
+}
+.mid-blip{
+
+}
+.low-blip{
+}
+.path-name{
+  font-size: 16px;
+  color: darkblue;
+}
+
+
+/*Our css!!!*/
 
 .text-vertical-center {
     display: table-cell;

@@ -31,9 +31,9 @@ pathsRouter.route('/paths')
 // Single Path:
 pathsRouter.route('/paths/:id')
   .get(function(req, res) {
-    Path.findById(req.params.id).populate('blips').exec(function(err, path) {
+    Path.findById(req.params.id, function(err, path) {
       if(err) return console.log(err)
-      res.json(path)
+      res.render('path', {path})
     })
   })
 
