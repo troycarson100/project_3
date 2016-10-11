@@ -8,7 +8,9 @@ var
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
+  methodOverride = require('method-override'),
   session = require('express-session'),
+  MongoStore = require('connect-mongo')(session)
   passport = require('passport'),
   userRoutes = require('./routes/users.js'),
   pathRoutes = require('./routes/paths.js'),
@@ -16,26 +18,30 @@ var
 
 
 const PORT = process.env.PORT || 3000
+const mongoConnectionString = 'mongodb://localhost/project_3'
 
-mongoose.connect('mongodb://localhost/project_3', function(err){
+
+mongoose.connect(mongoConnectionString, function(err){
 	if(err) return console.log(err)
 	console.log("Connected to MongoDB")
 })
 
 app.use(logger('dev'))
+app.use(methodOverride('_method'))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: true}))
 // ejs middelware
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
-app.use(express.static(__dirname + '/public'))
+app.use(express.static('public'))
 app.use(flash())
 // session + passport middleware
 app.use(session({
   secret: "pathlyfe4lyfe",
   cookie: {maxAge: 6000000},
   resave: true,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MongoStore({url: mongoConnectionString})
 }))
 
 app.use(passport.initialize())

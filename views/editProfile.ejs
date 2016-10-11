@@ -1,0 +1,29 @@
+<!-- /views/signup.ejs -->
+<div class="col-sm-6 col-sm-offset-3">
+
+    <h1>Edit Profile</h1>
+
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
+<%# This is the middleware that lets up use patch for our form!(method override)%>
+    <form action="/profile?_method=PATCH" method="post">
+        <div class="form-group">
+            <label>Name</label>
+            <input value="<%= currentUser.local.name %>" type="text" class="form-control" name="local[name]">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input value="<%= currentUser.local.email %>"type="text" class="form-control" name="local[email]">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="local[password]">
+        </div>
+
+        <button type="submit" class="btn btn-warning btn-lg">Update Profile</button>
+    </form>
+
+
+</div>

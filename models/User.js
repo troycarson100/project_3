@@ -21,6 +21,12 @@ userSchema.methods.validPassword = function(password){
   return bcrypt.compareSync(password, this.local.password)
 }
 
+userSchema.pre('save', function(next){
+  if(!this.isModified('local.password')) return next()
+  this.local.password = this.generateHash(this.local.password)
+  next()
+})
+
 var User = mongoose.model('User', userSchema)
 
 module.exports = User
