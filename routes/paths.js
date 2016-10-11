@@ -39,17 +39,29 @@ pathsRouter.route('/paths/:id')
 
 pathsRouter.route('/paths/:id/delete')
   .get(function(req, res){
-    User.findById(req.user._id,function(err, user){
-      if(err) return console.log(err)
-      user.paths.id(req.params.id).remove()
-      user.save(function(err){
+      Path.findByIdAndRemove(req.params.id, function(err){
         if(err) return console.log(err)
-        Path.findByIdAndRemove(req.params.id, function(err){
+        User.findById(req.user._id, function(err, user){
           if(err) return console.log(err)
-          res.redirect('/profile')
+          user.update({$pull: {paths: req.params.id}}, function(err){
+            if(err) return console.log(err)
+            res.redirect('/profile')
+          })
+
         })
       })
-    })
+
+    // User.findById(req.user._id,function(err, user){
+    //   if(err) return console.log(err)
+    //   user.paths.id(req.params.id).remove()
+    //   user.save(function(err){
+    //     if(err) return console.log(err)
+    //     Path.findByIdAndRemove(req.params.id, function(err){
+    //       if(err) return console.log(err)
+    //       res.redirect('/profile')
+    //     })
+    //   })
+    // })
   })
 
 // post Path's blips:
