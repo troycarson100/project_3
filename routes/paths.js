@@ -39,6 +39,7 @@ pathsRouter.route('/paths/:id')
 
 
 pathsRouter.route('/paths/:id/delete')
+  // .delete?
   .get(function(req, res){
       Path.findByIdAndRemove(req.params.id, function(err){
         if(err) return console.log(err)
