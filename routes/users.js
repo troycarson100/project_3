@@ -6,7 +6,7 @@ var
  Path = require('../models/Path.js'),
  usersController = require('../controllers/users.js')
 
-
+// ====================================================
 
  // index of all users:
 userRouter.get('/users', usersController.index)
@@ -58,5 +58,6 @@ function isLoggedIn(req,res,next){
   res.redirect('/')
 }
 
+//  ===================================================
 
 module.exports = userRouter
