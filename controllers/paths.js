@@ -4,7 +4,12 @@ module.exports = {
   index,
   create,
   show,
-  destroy
+  destroy,
+  indexBlip,
+  createBlip,
+  showBlip,
+  destroyBlip,
+  updateBlip
 }
 
 function index(req, res) {
