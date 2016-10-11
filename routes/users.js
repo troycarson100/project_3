@@ -14,14 +14,6 @@ userRouter.get('/users', function(req,res){
   })
 })
 
-// create new user:
-userRouter.post('/users', function(req,res){
-  User.create(req.body, function(err, user){
-    if(err) return console.log(err)
-    res.json({success: true, user: user})
-  })
-})
-
 // get a single user:
 userRouter.route('/users/:id')
  .get(function(req,res){
@@ -32,16 +24,6 @@ userRouter.route('/users/:id')
     res.json(user)
     })
   })
-
-  // .patch(function(req, res){
-  //   User.findByIdAndUpdate(req.param.id, req.body, {new: true}, function(err, user){
-  //     if(err) return console.log(err)
-  //     // user.update({ name : user.name })
-  //     res.json(user)
-  //   })
-  // })
-
-
 
 userRouter.get('/profile/delete', function(req,res){
     User.findByIdAndRemove(req.user._id, function(err){
