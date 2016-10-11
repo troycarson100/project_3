@@ -55,6 +55,7 @@ app.get('/create', function(req, res){
   res.render('create')
 })
 
+
 app.use('/', userRoutes)
 app.use('/', pathRoutes)
 
