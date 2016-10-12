@@ -1,46 +1,79 @@
 <div class="col-m-4">
-  <h1>Path Search</h1>
+  <h1>Find a Path by Its Title</h1>
 
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Search" id="path-search-text">
   </div>
-  <button type="submit" class="btn btn-default" id="path-search-btn">Submit</button>
+  <button type="submit" class="btn btn-default" id="path-search-btn">Search</button>
 
-  <ul class="search-results">Search Results</ul>
 </div>
 
 <div class="col-m-4">
-  <h1>Path Search by Blip</h1>
+  <h1>Find a Path by the Titles of Its Blips</h1>
 
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Search" id="blip-search-text">
   </div>
-  <button type="submit" class="btn btn-default" id="blip-search-btn">Submit</button>
+  <button type="submit" class="btn btn-default" id="blip-search-btn">Search</button>
 </div>
+<hr>
+<ul class="search-results">Results will appear here</ul>
 
 <script>
-  // Path Search Logic
-  var searchText = $('#path-search-text')
-  var $searchButton = $('#path-search-btn')
+  // Path Search Logic ============================
+
+  // set up jquery variables
+  var pathSearchText = $('#path-search-text')
+  var $pathSearchBtn = $('#path-search-btn')
+  var blipSearchText = $('#blip-search-text')
+  var $blipSearchBtn = $('#blip-search-btn')
   var searchResults = $('.search-results')
-  $searchButton.on('click', function(evt){
+
+  // User clicks path search button:
+  $pathSearchBtn.on('click', function(evt){
+    // stops the page from reloading
     evt.preventDefault()
+    // input for ajax request
     var opts = {
           method: 'post',
           url: '/search',
           contentType: 'application/json',
           data: JSON.stringify({
-              name: searchText.val()
+              name: pathSearchText.val()
+          })
+      };
+      // callback for ajax request
+      var cb = function(dataTCB) {
+          console.log(dataTCB)
+          printResults(dataTCB)
+      };
+      // making ajax request
+      $.ajax(opts)
+          .done(cb)
+  })
+
+  // user clicks path search by blip button:
+  $blipSearchBtn.on('click', function(evt){
+    evt.preventDefault()
+    var opts = {
+          method: 'post',
+          url: '/blips/search',
+          contentType: 'application/json',
+          data: JSON.stringify({
+              title: blipSearchText.val()
           })
       };
       var cb = function(dataTCB) {
           console.log(dataTCB)
-          showResults(dataTCB)
+          printResults(dataTCB)
       };
       $.ajax(opts)
           .done(cb)
   })
-  function showResults(data){
+
+  // function that creates a new clickable <a> tag
+  // using path data sent from the router
+  function printResults(data){
     searchResults.empty()
     data.forEach(function(path){
       var newItem = $('<a>', {
@@ -48,7 +81,7 @@
           class: 'search-result',
           text: (path['name']),
           href: ('/paths/'+path['_id'])
-      })
+        })
       var newBreak = $('<hr>')
       searchResults.append(newBreak)
       searchResults.append(newItem)

@@ -127,7 +127,7 @@ pathsRouter.post("/search", function(req, res) {
 // Search blips route
 pathsRouter.post("/blips/search", function(req, res) {
   var rx = new RegExp(req.body.title, "i")
-    // return all paths
+    // looks within all paths for blips whose name matches the search term 
     Path.find({"blips.title": rx}, function(err,paths){
       res.json(paths)
     })
