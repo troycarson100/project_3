@@ -18,10 +18,9 @@ var
 
 
 const PORT = process.env.PORT || 3000
-const mongoConnectionString = 'mongodb://localhost/project_3'
 
 
-mongoose.connect(mongoConnectionString, function(err){
+mongoose.connect(process.env.MONGO_URL, function(err){
 	if(err) return console.log(err)
 	console.log("Connected to MongoDB")
 })
