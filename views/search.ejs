@@ -1,0 +1,48 @@
+<h1>Path Search</h1>
+
+<form class="">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search" id="in-search-text">
+  </div>
+  <button type="submit" class="btn btn-default" id="in-search-btn">Submit</button>
+</form>
+
+<ul class="search-results">Search Results</ul>
+
+<script>
+  var searchText = $('#in-search-text')
+  var $searchBtn = $('#in-search-btn')
+  var searchResults = $('.search-results')
+  $searchBtn.on('click', function(evt){
+    evt.preventDefault()
+    var opts = {
+          method: 'post',
+          url: '/search',
+          contentType: 'application/json',
+          data: JSON.stringify({
+              name: searchText.val()
+          })
+      };
+      var cb = function(dataTCB) {
+          console.log(dataTCB)
+          showResults(dataTCB)
+      };
+      $.ajax(opts)
+          .done(cb)
+  })
+  function showResults(data){
+    searchResults.empty()
+    data.forEach(function(path){
+      var newItem = $('<a>', {
+          id: path['_id'],
+          class: 'search-result',
+          text: (path['name']),
+          href: ('/paths/'+path['_id'])
+      })
+      console.log(newItem)
+      searchResults.append(newItem)
+
+    })
+
+        }
+</script>
