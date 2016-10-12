@@ -1,7 +1,12 @@
 <!-- /views/profile.ejs -->
 <div class="page-header">
     <h1><%= user.local.name %></h1>
-    <h4><a href="/create">Create Path</a></h4>
+  <form class="" action="/users/<%=user.id%>/paths" method="post">
+
+    <input type="text" class="form-control" id="pathName" name="name" placeholder="Path Name">
+    <h4><button type="submit" class="btn btn-warning btn-lg">Create Path</button></h4>
+
+  </form>
 </div>
 
 <h3>Your paths</h3>
@@ -9,7 +14,5 @@
 <a href="/paths/<%= p._id %>" class="path-name"><%= p.name %></a>
   <a href="/paths/<%= p._id %>/delete"> Delete</a><br>
 <% }) %>
-
-
 
 <br>

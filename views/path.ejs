@@ -2,6 +2,11 @@
   <h1><%= path.name %></h1>
   <br>
 
+<%# IF CURRENT USER AND ITS THERE PATH, SHOW FORM FOR EDIT%>
+<%=currentUser.local.name%>
+<%=%>
+ <%# ////////////////////////%>
+
 <h2>Add Blip</h2>
 <%# CREATE BLIP FORM %>
   <div class="new-blip">
@@ -45,6 +50,9 @@
       <h4><%= b.title %></h4>
       <%= b.year %>
       <%= b.kind %>
+
+        <a href="/paths/<%=path._id%>/blips/<%=b._id%>"> Delete</a><br>
+
     </div>
     <br>
     <div class="mid-blip">
@@ -87,7 +95,7 @@ var opts = {
     newBlip = blips[blips.length-1]
 
     console.log(newBlip.title)
-     $('.all-blips').append('<div class="path-blip">' + newBlip.title + "<br>" + newBlip.year + "</div><br>")
+     $('.all-blips').append('<div class="path-blip"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +' </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div>')
 
 }
 

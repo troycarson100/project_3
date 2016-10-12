@@ -59,9 +59,9 @@ app.get('/',function(req, res){
 })
 // put this in a router?
 // currently we can make paths in /create, /paths and /user/:id/paths -ALEX
-app.get('/create', function(req, res){
-  res.render('create')
-})
+// app.get('/create', function(req, res){
+//   res.render('create')
+// })
 // app.get('/path', function(req, res){
 //   res.render('path')
 // })

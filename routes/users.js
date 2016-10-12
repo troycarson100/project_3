@@ -39,6 +39,7 @@ userRouter.get('/profile/delete', function(req,res){
 // Does this belong in the path router? - ALEX
 userRouter.route('/users/:id/paths')
 .post(function(req, res) {
+  console.log(req)
   // first find the user by its _id:
   User.findById(req.params.id, function(err, user) {
     // then create an path object (not yet saved to the database):
@@ -54,7 +55,7 @@ userRouter.route('/users/:id/paths')
       // then save the user and respond to the client with JSON data:
       user.save(function(err) {
         if(err) return console.log(err)
-        res.json(user)
+        res.redirect('/paths/'+newPath._id)
       })
     })
   })

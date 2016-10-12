@@ -8,9 +8,11 @@ var
 // Path ROUTES:
 pathsRouter.route('/paths')
   .get(function(req, res) {
-    Path.find({}, function(err, paths) {
+    Path.find({}).populate('_by').exec(function(err, paths) {
+    // Path.find({}, function(err, paths) {
       if(err) return console.log(err)
-      res.json(paths)
+      //This line changed by troy!
+      res.render('paths', {paths})
     })
   })
   .post(function(req, res){
@@ -33,6 +35,7 @@ pathsRouter.route('/paths/:id')
   .get(function(req, res) {
     Path.findById(req.params.id, function(err, path) {
       if(err) return console.log(err)
+      //This line changed by troy!
       res.render('path', {path})
       // res.json(path)
     })
