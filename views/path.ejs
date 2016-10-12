@@ -3,13 +3,14 @@
   <br>
 
 <%# IF CURRENT USER AND ITS THERE PATH, SHOW FORM FOR EDIT%>
+<%if(loggedIn && currentUser.local.name == path._by.local.name) {%>
 
  <%# ////////////////////////%>
 
 <h2>Add Blip</h2>
 <%# CREATE BLIP FORM %>
   <div class="new-blip">
- <form action="/paths" method="post">
+
 
    <div class="form-group col-xs-3 top-marg">
        <input type="text" class="form-control " id="blipTitle" placeholder="Blip Name">
@@ -34,23 +35,25 @@
 
 <button type="submit" class="btn btn-warning btn-lg" id="pathButton">Add Blip</button>
 
+<% } %>
+
 <%# HIDDEN ID FOR PATH%>
 <div id='pathId' style= "display:none"><%=path._id%></div>
 
 </div>
 
-
 <%# SHOW ALL BLIPS OF PATH%>
 <div class="all-blips">
 <% path.blips.forEach(function(b) { %>
   <div class="path-blip">
-
     <div class="top-blip">
       <h4><%= b.title %></h4>
       <%= b.year %>
       <%= b.kind %>
 
-        <a href="/paths/<%=path._id%>/blips/<%=b._id%>"> Delete</a><br>
+      <%if(loggedIn && currentUser.local.name == path._by.local.name) { %>
+        <button class="delete-btn" id='<%=b._id%>'> Delete</button><br>
+      <% } %>
 
     </div>
     <br>
@@ -68,7 +71,25 @@
 
 <script>
 var $pathId = $('#pathId')
+var $blipId = $('#blipId')
 var $pathBtn = $('#pathButton')
+var $myBody = $('body')
+
+
+$myBody.on('click', '.delete-btn', function(){
+
+var $self = $(this)
+  console.log("delete clicked!")
+  var opts = {
+    method: 'delete',
+    url: '/paths/'+$pathId.text()+'/blips/'+$(this).attr('id')
+  }
+  var cb = function(data){
+    $self.parent().parent().remove()
+  }
+  $.ajax(opts).done(cb)
+})
+
 
 $pathBtn.on('click', function(evt){
    evt.preventDefault();
@@ -76,6 +97,7 @@ $pathBtn.on('click', function(evt){
    var $description = $('#description').val()
    var $year = $('#blipYear').val()
    var $blipDrop = $('#blipDrop').val()
+
 
 var opts = {
   method: 'post',
@@ -94,7 +116,7 @@ var opts = {
     newBlip = blips[blips.length-1]
 
     console.log(newBlip.title)
-     $('.all-blips').append('<div class="path-blip"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +' </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div>')
+     $('.all-blips').append('<div class="path-blip"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +'<%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id='+ newBlip._id + '> Delete</button><br><% } %> </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div>')
 
 }
 

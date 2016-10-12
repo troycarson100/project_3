@@ -33,7 +33,7 @@ pathsRouter.route('/paths')
 // Single Path:
 pathsRouter.route('/paths/:id')
   .get(function(req, res) {
-    Path.findById(req.params.id, function(err, path) {
+    Path.findById(req.params.id).populate('_by').exec(function(err, path) {
       if(err) return console.log(err)
       //This line changed by troy!
       res.render('path', {path})
