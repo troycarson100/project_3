@@ -44,12 +44,23 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
       <script>
-        var searchText = $('#search-text').val()
+        var searchText = $('#search-text')
         var $searchBtn = $('#search-btn')
-        $searchBtn.on('click', function(){
-          event.preventDefault()
-          console.log(searchText)
+        $searchBtn.on('click', function(evt){
+          evt.preventDefault()
+          var opts = {
+                method: 'post',
+                url: '/search',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    name: searchText.val()
+                })
+            };
+            var cb = function(dataTCB) {
+                console.log(dataTCB)
+            };
+            $.ajax(opts)
+                .done(cb);
         })
-
       </script>
     </nav>

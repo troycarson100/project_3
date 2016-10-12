@@ -114,16 +114,35 @@ pathsRouter.route('/paths/:pathId/blips/:blipId')
 
 // Search paths route
 pathsRouter.post("/search", function(req, res) {
-  // var rx = ("/" + req.body.name + "/" + "i")
+  // converts search term to a regex object / "i" allows case insensitivity
   var rx = new RegExp(req.body.name, "i")
-  console.log(rx)
+    // finds a path with a name that matches the search term
     Path.find({"name": rx}, function(err,data){
-    // Path.where("name").$regex(rx).exec(function(err,data){
       if(err) return res.json(err)
       console.log(data)
+      // returns that data to the client as a json object
       res.json(data)
     })
   })
+
+// Search blips route
+// pathsRouter.post("/blips/search", function(req, res) {
+//   // converts search term to a regex object / "i" allows case insensitivity
+//   var rx = new RegExp(req.body.name, "i")
+//     // finds a path with a name that matches the search term
+//     Path.find({}, function(err,paths){
+//       paths.forEach(function(blips){
+//         blips.find({"title": rx}, function(err,data){
+//           res.json(data)
+//         })
+//       })
+//     // Path.find({"name": rx}, function(err,data){
+//       if(err) return res.json(err)
+//       console.log(data)
+//       // returns that data to the client as a json object
+//       res.json(data)
+//     })
+//   })
 
 
 
