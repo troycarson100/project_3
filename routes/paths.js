@@ -113,9 +113,12 @@ pathsRouter.route('/paths/:pathId/blips/:blipId')
   })
 
 // Search paths route
-// Works but needs to be exact
 pathsRouter.post("/search", function(req, res) {
-    Path.find({"name": req.body.name}, function(err,data){
+  // var rx = ("/" + req.body.name + "/" + "i")
+  var rx = new RegExp(req.body.name, "i")
+  console.log(rx)
+    Path.find({"name": rx}, function(err,data){
+    // Path.where("name").$regex(rx).exec(function(err,data){
       if(err) return res.json(err)
       console.log(data)
       res.json(data)
