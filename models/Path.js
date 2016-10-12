@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 var blipSchema = mongoose.Schema({
   title : {type: String, required: true},
   description: {type: String},
-  link: {type: String}, 
+  link: {type: String},
   kind: {type: String},
   year: {type: Number}
   // img: {type: String},

@@ -112,6 +112,16 @@ pathsRouter.route('/paths/:pathId/blips/:blipId')
     })
   })
 
+// Search paths route
+// Works but needs to be exact
+pathsRouter.post("/search", function(req, res) {
+    Path.find({"name": req.body.name}, function(err,data){
+      if(err) return res.json(err)
+      console.log(data)
+      res.json(data)
+    })
+  })
+
 
 
 module.exports = pathsRouter
