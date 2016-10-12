@@ -58,15 +58,10 @@ app.use(function(req, res, next){
 app.get('/',function(req, res){
   res.render('index')
 })
-// put this in a router?
-// currently we can make paths in /create, /paths and /user/:id/paths -ALEX
-// app.get('/create', function(req, res){
-//   res.render('create')
-// })
-// app.get('/path', function(req, res){
-//   res.render('path')
-// })
 
+app.get('/search', function(req, res){
+  res.render('search')
+})
 
 app.use('/', userRoutes)
 app.use('/', pathRoutes)
