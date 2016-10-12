@@ -1,4 +1,5 @@
 var
+  dotenv = require('dotenv').load({silent: true}),
   express = require('express'),
   app = express(),
   ejs = require('ejs'),
@@ -18,9 +19,10 @@ var
 
 
 const PORT = process.env.PORT || 3000
+const mongoConnectionString=process.env.MONGO_URL
 
 
-mongoose.connect(process.env.MONGO_URL, function(err){
+mongoose.connect(mongoConnectionString, function(err){
 	if(err) return console.log(err)
 	console.log("Connected to MongoDB")
 })
