@@ -1,19 +1,29 @@
-<h1>Path Search</h1>
+<div class="col-m-4">
+  <h1>Path Search</h1>
 
-<form class="">
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search" id="in-search-text">
+    <input type="text" class="form-control" placeholder="Search" id="path-search-text">
   </div>
-  <button type="submit" class="btn btn-default" id="in-search-btn">Submit</button>
-</form>
+  <button type="submit" class="btn btn-default" id="path-search-btn">Submit</button>
 
-<ul class="search-results">Search Results</ul>
+  <ul class="search-results">Search Results</ul>
+</div>
+
+<div class="col-m-4">
+  <h1>Path Search by Blip</h1>
+
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search" id="blip-search-text">
+  </div>
+  <button type="submit" class="btn btn-default" id="blip-search-btn">Submit</button>
+</div>
 
 <script>
-  var searchText = $('#in-search-text')
-  var $searchBtn = $('#in-search-btn')
+  // Path Search Logic
+  var searchText = $('#path-search-text')
+  var $searchButton = $('#path-search-btn')
   var searchResults = $('.search-results')
-  $searchBtn.on('click', function(evt){
+  $searchButton.on('click', function(evt){
     evt.preventDefault()
     var opts = {
           method: 'post',
@@ -39,10 +49,9 @@
           text: (path['name']),
           href: ('/paths/'+path['_id'])
       })
-      console.log(newItem)
+      var newBreak = $('<hr>')
+      searchResults.append(newBreak)
       searchResults.append(newItem)
-
     })
-
-        }
+  }
 </script>
