@@ -34,6 +34,7 @@ pathsRouter.route('/paths/:id')
     Path.findById(req.params.id, function(err, path) {
       if(err) return console.log(err)
       res.render('path', {path})
+      // res.json(path)
     })
   })
 
@@ -107,6 +108,7 @@ pathsRouter.route('/paths/:pathId/blips/:blipId')
       })
     })
   })
+
 
 
 module.exports = pathsRouter

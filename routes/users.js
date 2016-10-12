@@ -121,5 +121,4 @@ function isLoggedIn(req,res,next){
   res.redirect('/')
 }
 
-
 module.exports = userRouter

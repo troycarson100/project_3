@@ -1,64 +1,82 @@
 
-<div class="col-sm-6 col-sm-offset-3">
+<h2>Add Blip</h2>
+<%# CREATE BLIP FORM %>
+  <div class="new-blip">
+ <form action="/paths" method="post">
 
-    <h1>Edit your blip</h1>
+   <div class="form-group col-xs-3 top-marg">
+       <input type="text" class="form-control " id="blipTitle" placeholder="Blip Name">
 
-    <form action="/create" method="post">
+   <select class="selectpicker top-marg" id="blipDrop">
+     <option>Select Type</option>
+     <option>Education</option>
+     <option>Resource</option>
+     <option>Job</option>
+   </select>
 
-        <div class="form-group">
-            <label for="blips">Blip Title</label>
-            <input type="text" class="form-control">
-        </div>
+   </div>
+   <div class="col-xs-2">
+     <input type="text" class="form-control top-marg" id="blipYear" placeholder="Year">
+   </div>
 
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type of Industry
-              <span class="cart"></span></button>
-              <ul class="dropdown-menu">
-                <li><a href="#">Web Development</a></li>
-                <li><a href="#">Other</a></li>
-              </ul>
-            </div>
+   <div class="form-group col-xs-7">
+     <label for="description">Description</label>
+       <textarea class="description-blip" rows="1" id="description">
+     </textarea>
+   </div>
 
-            <div class="form-group">
-                <label for="duration">Duration</label>
-                <textarea class="form-control" rows="5" id="comment">
-                </textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="tags">Tags</label>
-                <textarea class="form-control" rows="5" id="comment">
-                </textarea>
-            </div>
-
-        <div class="form-group">
-            <label for="comment">Link</label>
-            <textarea class="form-control" rows="5" id="comment">
-            </textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="timesUsed">Times completed or used</label>
-            <textarea class="form-control" rows="5" id="comment">
-            </textarea>
-          </div>
-
-          <div class="form-group">
-              <label for="description">Description</label>
-              <textarea class="form-control" rows="5" id="comment">
-              </textarea>
-          </div>
+<button type="submit" class="btn btn-warning btn-lg" id="pathButton">Add Blip</button>
 
 
-        <div class="form-group">
-          <label for="blipSchema"></label>
-          <input>
+
+  </div>
 
 
-        <button type="submit" class="btn btn-warning btn-lg">Create your pathLyfe</button>
-    </form>
+<%# SHOW ALL BLIPS OF PATH%>
+<% path.blips.forEach(function(b) { %>
+  <div class="path-blip">
 
-    <hr>
+    <div class="top-blip">
+      <h4><%= b.title %></h4>
+      <%= b.year %>
+      <%= b.kind %>
+    </div>
+    <br>
+    <div class="mid-blip">
+      <p><%= b.description %></p>
+    </div>
+
+    <div class="low-blip">
+      <%= b.link %>
+    </div>
+
+  </div>
+<% }) %>
 
 
-</div>
+<script>
+
+var $pathBtn = $('#pathButton')
+$pathBtn.on(click, function(evt){
+   var $blipTitle = $('#blipTitle').val(),
+   var $description = $('#description').val(),
+   var $year = $('#blipYear').val(),
+   var $blipDrop = $('#blipDrop').val()
+
+
+var opts = {
+  method: 'post',
+  url: '/paths',
+  contentType: 'application/json',
+  data: JSON.stringify({
+    title: $blipTitle,
+    description: $description,
+    year: $year,
+    kind: $blipDrop
+    })
+  }
+$.ajax(opts).done(cb)
+})
+
+
+</script>
