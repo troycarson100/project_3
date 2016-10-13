@@ -9,6 +9,7 @@ module.exports = {
   createPath
 }
 
+// index of  all users
 function index(req,res){
   User.find({}, function(err, users){
     if(err) return console.log(err)
@@ -16,6 +17,7 @@ function index(req,res){
   })
 }
 
+// show a specific user
 function show(req,res){
  // When we find the user by _id, we replace its 'Path' array with an array of ACTUAL complete path objects using .populate()
  // THEN we execute the callback which sends the populated user to the client:
@@ -25,7 +27,7 @@ function show(req,res){
    })
  }
 
-
+// update a user profile
 function update(req, res){
   User.findById(req.user._id, function(err, user){
     console.log(req.body)
@@ -40,6 +42,7 @@ function update(req, res){
   })
 }
 
+// delete a user
 function destroy(req,res){
     User.findByIdAndRemove(req.user._id, function(err){
       if(err) return console.log(err)
@@ -50,6 +53,7 @@ function destroy(req,res){
     })
   }
 
+// create a path through the user id
 function createPath(req, res){
   console.log(req)
   // first find the user by its _id:
@@ -72,4 +76,5 @@ function createPath(req, res){
     })
   })
 }
-// I left the login/logout functions in the router itself, because they are short / I'm afraid to move them :) - ALEX
+
+// I left the login/logout functions in the router itself, because they are short and I'm afraid to move them :) - ALEX

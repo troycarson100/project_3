@@ -6,6 +6,7 @@ var
  Path = require('../models/Path.js')
  userController = require('../controllers/users.js')
 
+// BASIC USER ROUTES ===================================
 
  // index of all users:
 userRouter.get('/users', userController.index)
