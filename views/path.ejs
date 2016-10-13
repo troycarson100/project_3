@@ -11,7 +11,7 @@
   <div class="new-blip">
 
 
-   <div class="form-group col-xs-3 top-marg">
+   <div class="form-group col-xs-3 col-md-3 top-marg">
        <input type="text" class="form-control " id="blipTitle" placeholder="Blip Name">
 
    <select class="selectpicker top-marg" id="blipDrop">
@@ -21,18 +21,20 @@
      <option>Job</option>
    </select>
 
+      <button type="submit" class="subPath btn btn-warning btn-lg" id="pathButton">Add Blip</button>
+
    </div>
-   <div class="col-xs-2">
+   <div class="col-xs-2 col-md-2">
      <input type="text" class="form-control top-marg" id="blipYear" placeholder="Year">
    </div>
 
-   <div class="form-group col-xs-7">
-     <label for="description">Description</label>
+   <div class="form-group col-xs-7 col-md-7">
+     <label for="description">Description/Tips</label>
        <textarea class="description-blip" rows="1" id="description">
      </textarea>
    </div>
 
-<button type="submit" class="btn btn-warning btn-lg" id="pathButton">Add Blip</button>
+
 
 <% } %>
 
@@ -41,32 +43,42 @@
 
 </div>
 
-<%# SHOW ALL BLIPS OF PATH%>
-<div class="all-blips">
-<% blips.forEach(function(b) { %>
-  <div data-year="<%= b.year %>" class="path-blip">
-    <div class="top-blip">
-      <h4><%= b.title %></h4>
-      <%= b.year %>
-      <%= b.kind %>
 
-      <%if(loggedIn && currentUser.local.name == path._by.local.name) { %>
-        <button class="delete-btn" id='<%=b._id%>'> Delete</button><br>
-      <% } %>
+  <%#ALL BLIPS%>
+  <div class="all-blips">
+  <% blips.forEach(function(b) { %>
+  <div ="blipContainer">
+    <div data-year="<%= b.year %>" class="path-blip">
+      <div class="top-blip">
+        <h4><%= b.title %></h4>
+        <%if(loggedIn && currentUser.local.name == path._by.local.name) { %>
+          <button class="delete-btn" id='<%=b._id%>'> Delete</button><br>
+        <% } %>
+        <br>
 
-    </div>
-    <br>
-    <div class="mid-blip">
-      <p><%= b.description %></p>
+        <%= b.kind %>
+
+      </div>
+      <br>
+      <div class="mid-blip">
+        <p><%= b.description %></p>
+      </div>
+
+      <div class="low-blip">
+        <%= b.link %>
+      </div>
     </div>
 
-    <div class="low-blip">
-      <%= b.link %>
-    </div>
+    <div class="yearBlip"><%= b.year %></div>
 
   </div>
-<% }) %>
-</div>
+  <% }) %>
+  </div>
+
+<%# <section id="cd-timeline" class="cd-container"></section>%>
+
+
+
 
 <script>
 var $pathId = $('#pathId')
@@ -120,18 +132,17 @@ var opts = {
 
     var position = 0;
     $('.path-blip').each(function(index, blip){
-      if($(blip).data('year') > newBlip.year) {
-        // $(blip).addClass('thisOne')
-        console.log(index);
-        position = index;
-        return;
+      if (newBlip.year > $(blip).data('year')){
+        position = index
+        return false;
       }
     })
 
-    $('<div data-year="' + newBlip.year + '" class="path-blip" style="display:none"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +'<%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id='+ newBlip._id + '> Delete</button><br><% } %> </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div>').insertAfter($('.path-blip')[position]);
+
+    $('<div data-year="' + newBlip.year + '" class="path-blip" style="display:none"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +'<%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id='+ newBlip._id + '> Delete</button><br><% } %> </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div>').insertBefore($('.path-blip')[position]);
 
 
-     $('.path-blip').eq(position+1).slideDown();
+     $('.path-blip').eq(position).slideDown();
 
      $('#blipTitle').val("")
      $('#description').val("")
