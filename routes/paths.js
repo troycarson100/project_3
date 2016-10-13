@@ -35,8 +35,12 @@ pathsRouter.route('/paths/:id')
   .get(function(req, res) {
     Path.findById(req.params.id).populate('_by').exec(function(err, path) {
       if(err) return console.log(err)
+      var blips = path.blips.concat()
+      blips = blips.sort(function(obj1, obj2) {
+        return obj2.year - obj1.year
+      })
       //This line changed by troy!
-      res.render('path', {path})
+      res.render('path', {path, blips})
       // res.json(path)
     })
   })

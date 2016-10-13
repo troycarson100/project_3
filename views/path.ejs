@@ -43,8 +43,8 @@
 
 <%# SHOW ALL BLIPS OF PATH%>
 <div class="all-blips">
-<% path.blips.forEach(function(b) { %>
-  <div class="path-blip">
+<% blips.forEach(function(b) { %>
+  <div data-year="<%= b.year %>" class="path-blip">
     <div class="top-blip">
       <h4><%= b.title %></h4>
       <%= b.year %>
@@ -114,11 +114,30 @@ var opts = {
     blips = data.blips
     newBlip = blips[blips.length-1]
 
-    console.log(newBlip.title)
-     $('.all-blips').append('<div class="path-blip"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +'<%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id='+ newBlip._id + '> Delete</button><br><% } %> </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div>')
+    // console.log(newBlip.title)
+    //  $('.all-blips').prepend('<div data-year="' + newBlip.year + '" class="path-blip" style="display:none"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +'<%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id='+ newBlip._id + '> Delete</button><br><% } %> </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div>')
+    // console.log($('.path-blip').length);
 
-}
+    var position = 0;
+    $('.path-blip').each(function(index, blip){
+      if($(blip).data('year') > newBlip.year) {
+        // $(blip).addClass('thisOne')
+        console.log(index);
+        position = index;
+        return;
+      }
+    })
 
+    $('<div data-year="' + newBlip.year + '" class="path-blip" style="display:none"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +'<%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id='+ newBlip._id + '> Delete</button><br><% } %> </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div>').insertAfter($('.path-blip')[position]);
+
+
+     $('.path-blip').eq(position+1).slideDown();
+
+     $('#blipTitle').val("")
+     $('#description').val("")
+     $('#blipYear').val("")
+     $blipDrop = $('#blipDrop').val("Select Type")
+   }
 $.ajax(opts).done(cb)
 })
 
