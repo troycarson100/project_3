@@ -46,6 +46,8 @@ background: linear-gradient(to left, #757F9A , #D7DDE8); /* W3C, IE 10+/ Edge, F
   margin-top: 60px;
   display: inline-block;
   color: #d2def2;
+  padding-top: 5px;
+  padding-left: 5px;
 
   -webkit-box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);
 -moz-box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);

@@ -139,12 +139,20 @@ var opts = {
         return false;
       }
     })
+    if(newBlip.kind == "Resource") {
+      var icon = 'book-icon.png'
+    } else if(newBlip.kind == "Job") {
+      var icon = 'dollar-sign.png'
+    } else if(newBlip.kind == "Education") {
+      var icon = 'eductaion.png'
+    }
+
+    console.log(icon)
+
+ $('<div class="blipContainer" style="display:none"><div data-year="'+newBlip.year+'" class="path-blip"><div class="top-blip"><h4>'+ newBlip.title+ '</h4><%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id="'+newBlip._id+'"> Delete</button><br><% } %><div class="bIcon"><img src="/img/' + icon +  '"></div><br></div><br><div class="mid-blip"><p>'+newBlip.description+'</p></div><div class="low-blip">'+newBlip.link+'</div></div><div class="yearBlip"><hr width="2" size="100">'+newBlip.year+'<hr width="2"size="100"></div></div>').insertBefore($('.path-blip')[position]);
 
 
-    $('<div ="blipContainer"><div data-year="'+newBlip.year + '" class="path-blip" style="display:none"><div class="top-blip"><h4>'+newBlip.title + '</h4> ' + newBlip.year+'<%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id='+ newBlip._id +'>Delete</button><br><% } %><div class="bIcon"><%if('+newBlip.kind+' == "Resource") { %><img src="/img/book-icon.png"><% } else if('+newBlip.kind+' == "Job") { %><img src="/img/dollar-sign.png"><% } else if('+newBlip.kind+'== "Education") { %><img src="/img/eductaion.png"><% } %>  </div> <br></div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div></div><div class="yearBlip"><hr width="2" size="100">'+newBlip.year+'<hr width="2" size="100"></div></div>').insertBefore($('.path-blip')[position]);
-
-
-     $('.path-blip').eq(position).slideDown();
+     $('.blipContainer').eq(position).slideDown();
 
      $('#blipTitle').val("")
      $('#description').val("")
