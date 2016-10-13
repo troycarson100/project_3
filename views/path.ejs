@@ -54,9 +54,18 @@
         <%if(loggedIn && currentUser.local.name == path._by.local.name) { %>
           <button class="delete-btn" id='<%=b._id%>'> Delete</button><br>
         <% } %>
+
+        <div class="bIcon">
+          <%if(b.kind == "Education") { %>
+            <img src="./public/img/book-icon.png">
+          <% } %>
+        </div>
+
         <br>
 
-        <%= b.kind %>
+        <%if(b.kind != "Select Type") { %>
+         <%= b.kind %>
+        <% } %>
 
       </div>
       <br>
@@ -69,15 +78,11 @@
       </div>
     </div>
 
-    <div class="yearBlip"><%= b.year %></div>
+    <div class="yearBlip"><hr width="2" size="100"><%= b.year %><hr width="2" size="100"></div>
 
   </div>
   <% }) %>
   </div>
-
-<%# <section id="cd-timeline" class="cd-container"></section>%>
-
-
 
 
 <script>
@@ -96,7 +101,7 @@ var $self = $(this)
     url: '/paths/'+$pathId.text()+'/blips/'+$(this).attr('id')
   }
   var cb = function(data){
-    $self.parent().parent().remove()
+    $self.parent().parent().parent().remove()
   }
   $.ajax(opts).done(cb)
 })
@@ -126,10 +131,6 @@ var opts = {
     blips = data.blips
     newBlip = blips[blips.length-1]
 
-    // console.log(newBlip.title)
-    //  $('.all-blips').prepend('<div data-year="' + newBlip.year + '" class="path-blip" style="display:none"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +'<%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id='+ newBlip._id + '> Delete</button><br><% } %> </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div>')
-    // console.log($('.path-blip').length);
-
     var position = 0;
     $('.path-blip').each(function(index, blip){
       if (newBlip.year > $(blip).data('year')){
@@ -139,7 +140,7 @@ var opts = {
     })
 
 
-    $('<div data-year="' + newBlip.year + '" class="path-blip" style="display:none"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +'<%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id='+ newBlip._id + '> Delete</button><br><% } %> </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div>').insertBefore($('.path-blip')[position]);
+    $('<div ="blipContainer"><div data-year="' + newBlip.year + '" class="path-blip" style="display:none"><div class="top-blip"><h4>' + newBlip.title + '</h4> ' + newBlip.year + ' ' + newBlip.kind +'<%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id='+ newBlip._id + '> Delete</button><br><% } %> </div><br><div class="mid-blip"><p>' + newBlip.description +'</p> </div><div class="low-blip">' + newBlip.link + '</div></div><div class="yearBlip">'+ newBlip.year+'</div></div>').insertBefore($('.path-blip')[position]);
 
 
      $('.path-blip').eq(position).slideDown();

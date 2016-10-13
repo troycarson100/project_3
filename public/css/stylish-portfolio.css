@@ -14,6 +14,12 @@ body {
 
 body {
     font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+
+
+background: #757F9A; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #757F9A , #D7DDE8); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #757F9A , #D7DDE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 /*Our css!!! -Troy*/
@@ -30,6 +36,10 @@ body {
   margin-top: 60px;
   display: inline-block;
   color: #d2def2;
+
+  -webkit-box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);
+-moz-box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);
+box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);
 
   background: -moz-linear-gradient(91deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* ff3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,1)), color-stop(100%, rgba(28,28,28,0.6))); /* safari4+,chrome */
@@ -60,6 +70,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
   width: 100%;
   height: 220px;
   border: 1px solid black;
+
+  -webkit-box-shadow: -28px 31px 54px -20px rgba(97,157,179,1);
+  -moz-box-shadow: -28px 31px 54px -20px rgba(97,157,179,1);
+  box-shadow: -28px 31px 54px -20px rgba(97,157,179,1);
+
 }
 .description-blip {
   height: 150px;
@@ -78,18 +93,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 .yearBlip{
   /*float: right;*/
   display: inline-block;
-
   font-size: 25px;
   font-style: italic;
   margin-left: 115px;
-  float: bottom;
+  vertical-align: top;
+  margin-top: 20px;
 }
 
-.tline{
-  position: sticky;
-  display: block;
-
-}
 .selectpicker{
   margin-bottom: 50px;
 }
@@ -107,7 +117,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
     font-size: 4.5em;
     font-weight: 700;
 }
+.eduImg{
 
+}
 /* Custom Button Styles */
 
 .btn-dark {
