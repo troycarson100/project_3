@@ -61,7 +61,7 @@
           <% } else if(b.kind == "Job") { %>
             <img src="/img/dollar-sign.png">
           <% } else if(b.kind == "Education") { %>
-            <img src="/img/eductaion.png">
+            <img src="/img/education.png">
           <% } %>
         </div>
 
@@ -144,12 +144,13 @@ var opts = {
     } else if(newBlip.kind == "Job") {
       var icon = 'dollar-sign.png'
     } else if(newBlip.kind == "Education") {
-      var icon = 'eductaion.png'
+      var icon = 'education.png'
     }
 
     console.log(icon)
 
  $('<div class="blipContainer" style="display:none"><div data-year="'+newBlip.year+'" class="path-blip"><div class="top-blip"><h4>'+ newBlip.title+ '</h4><%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id="'+newBlip._id+'"> Delete</button><br><% } %><div class="bIcon"><img src="/img/' + icon +  '"></div><br></div><br><div class="mid-blip"><p>'+newBlip.description+'</p></div><div class="low-blip">'+newBlip.link+'</div></div><div class="yearBlip"><hr width="2" size="100">'+newBlip.year+'<hr width="2"size="100"></div></div>').insertBefore($('.path-blip')[position]);
+
 
 
      $('.blipContainer').eq(position).slideDown();
