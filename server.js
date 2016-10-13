@@ -54,17 +54,15 @@ app.use(function(req, res, next){
 	next()
 })
 
-
 app.get('/',function(req, res){
   res.render('index')
 })
-
+app.use('/', userRoutes)
+app.use('/', pathRoutes)
+// Renders a path search page
 app.get('/search', function(req, res){
   res.render('search')
 })
-
-app.use('/', userRoutes)
-app.use('/', pathRoutes)
 
 
 app.listen(PORT, function(){
