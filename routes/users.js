@@ -4,37 +4,20 @@ var
  userRouter = express.Router(),
  User = require('../models/User.js'),
  Path = require('../models/Path.js')
- // userController = require('../controllers/users.js')
+ userController = require('../controllers/users.js')
 
 
- // index of ALL users:
-userRouter.get('/users', function(req,res){
-  User.find({}, function(err, users){
-    if(err) return console.log(err)
-    res.json(users)
-  })
-})
+ // index of all users:
+userRouter.get('/users', userController.index)
 
 // get a single user:
-userRouter.route('/users/:id')
- .get(function(req,res){
-  // When we find the user by _id, we replace its 'Path' array with an array of ACTUAL complete path objects using .populate()
-  // THEN we execute the callback which sends the populated user to the client:
-  User.findById(req.params.id).populate('paths').exec(function(err, user){
-    if(err) return console.log(err)
-    res.json(user)
-    })
-  })
+userRouter.get('/users/:id', userController.show)
 
-userRouter.get('/profile/delete', function(req,res){
-    User.findByIdAndRemove(req.user._id, function(err){
-      if(err) return console.log(err)
-      Path.remove({_by: req.user._id}, function(err){
-        if(err) return console.log(err)
-        res.redirect('/logout')
-      })
-    })
-  })
+// delete a user:
+userRouter.get('/profile/delete', userController.destroy)
+
+// update a single user
+userRouter.patch('/profile', userController.update)
 
 // Does this belong in the path router? - ALEX
 userRouter.route('/users/:id/paths')
@@ -61,14 +44,6 @@ userRouter.route('/users/:id/paths')
   })
 })
 
-// // Individual Path From User:
-// userRouter.get('/users/:userId/paths/:pathId', function(req, res) {
-//   User.findById(req.params.userId).populate('paths').exec(function(err, user) {
-//     user.paths.select({_id: req.params.pathId}, function(err, path) {
-//       res.json(path)
-//     })
-//   })
-// })
 
 // SIGN UP AND SIGN IN ===============================
 
@@ -93,20 +68,6 @@ userRouter.route('/signup')
 userRouter.get('/profile', isLoggedIn, function(req, res){
      res.render('profile', {user: req.user})
    })
-
-userRouter.patch('/profile', function(req, res){
-  User.findById(req.user._id, function(err, user){
-    console.log(req.body)
-    //ignore any empty form fields
-    if(err) return console.log(err)
-    for(key in req.body.local) {
-      if(req.body.local[key]) user.local[key] = req.body.local[key]
-    }
-    user.save(function(err){
-      res.redirect('/profile')
-    })
-  })
-})
 
 userRouter.get('/profile/edit', function(req, res){
   res.render('editProfile', {message: req.flash('editProfileMessage')})
