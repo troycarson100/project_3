@@ -139,7 +139,8 @@ function updateBlip(req, res){
 function searchPathByBlips(req, res) {
   var rx = new RegExp(req.body.title, "i")
     // looks within all paths for blips whose name matches the search term
-    Path.find({"blips.title": rx}, function(err,paths){
+    Path.find({"blips.title": rx}).populate('_by').exec(function(err,paths){
+      console.log(paths)
       res.json(paths)
     })
   }
