@@ -72,13 +72,15 @@
 
 
 <script>
+
 var $pathId = $('#pathId')
 var $blipId = $('#blipId')
 var $pathBtn = $('#pathButton')
 var $myBody = $('body')
+
+//delete blip
 $myBody.on('click', '.delete-btn', function(){
 var $self = $(this)
-  console.log("delete clicked!")
   var opts = {
     method: 'delete',
     url: '/paths/'+$pathId.text()+'/blips/'+$(this).attr('id')
@@ -88,23 +90,25 @@ var $self = $(this)
   }
   $.ajax(opts).done(cb)
 })
+//submit new blip
 $pathBtn.on('click', function(evt){
    evt.preventDefault();
    var $blipTitle = $('#blipTitle').val()
    var $description = $('#description').val()
    var $year = $('#blipYear').val()
    var $blipDrop = $('#blipDrop').val()
-var opts = {
-  method: 'post',
-  url: '/paths/'+$pathId.text()+'/blips',
-  contentType: 'application/json',
-  data: JSON.stringify({
-    title: $blipTitle,
-    description: $description,
-    year: $year,
-    kind: $blipDrop
-    })
-  }
+
+  var opts = {
+    method: 'post',
+    url: '/paths/'+$pathId.text()+'/blips',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      title: $blipTitle,
+      description: $description,
+      year: $year,
+      kind: $blipDrop
+      })
+    }
   var cb = function(data){
     // console.log(data)
     blips = data.blips
@@ -123,8 +127,10 @@ var opts = {
     } else if(newBlip.kind == "Education") {
       var icon = 'education.png'
     }
-    console.log(icon)
- $('<div class="blipContainer" style="display:none"><div data-year="'+newBlip.year+'" class="path-blip"><div class="top-blip"><h4>'+ newBlip.title+ '</h4><%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id="'+newBlip._id+'"> Delete</button><br><% } %><div class="bIcon"><img src="/img/' + icon +  '"></div><br></div><br><div class="mid-blip"><p>'+newBlip.description+'</p></div><div class="low-blip">'+newBlip.link+'</div></div><div class="yearBlip"><hr width="2" size="100">'+newBlip.year+'<hr width="2"size="100"></div></div>').insertBefore($('.path-blip')[position]);
+
+    //Append new blip!
+ $('<div class="blipContainer" style="display:none"><div data-year="'+newBlip.year+'" class="path-blip"><div class="top-blip"><h4>'+ newBlip.title+ '</h4><%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id="'+newBlip._id+'"> Delete</button><br><% } %><div class="bIcon"><img src="/img/' + icon +  '"></div><br></div><br><div class="mid-blip"><p>'+newBlip.description+'</p></div></div><div class="yearBlip"><hr width="2" size="100">'+newBlip.year+'<hr width="2"size="100"></div></div>').insertBefore($('.path-blip')[position]);
+
      $('.blipContainer').eq(position).slideDown();
      $('#blipTitle').val("")
      $('#description').val("")

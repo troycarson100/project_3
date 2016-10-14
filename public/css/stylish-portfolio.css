@@ -44,7 +44,50 @@ background: linear-gradient(to left, #757F9A , #D7DDE8); /* W3C, IE 10+/ Edge, F
   color: #474747;
   border: 1px solid black;
   border-radius: 5px;
+}
+.path_2_container{
+  width: 25%;
+  height: 150px;
+  color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 5px;
+  text-align: center;
+  display: inline-block;
 
+  -webkit-box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);
+-moz-box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);
+box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);
+
+  background: -moz-linear-gradient(91deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* ff3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,1)), color-stop(100%, rgba(28,28,28,0.6))); /* safari4+,chrome */
+background: -webkit-linear-gradient(91deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* safari5.1+,chrome10+ */
+background: -o-linear-gradient(91deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* opera 11.10+ */
+background: -ms-linear-gradient(91deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* ie10+ */
+background: linear-gradient(359deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* w3c */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#1C1C1C',GradientType=0 ); /* ie6-9 */
+}
+.path_3_container{
+  width: 25%;
+  height: 40px;
+  color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 5px;
+  text-align: center;
+  display: inline-block;
+
+  -webkit-box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);
+-moz-box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);
+box-shadow: -39px 38px 90px -20px rgba(93,92,173,1);
+
+  background: -moz-linear-gradient(91deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* ff3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,1)), color-stop(100%, rgba(28,28,28,0.6))); /* safari4+,chrome */
+background: -webkit-linear-gradient(91deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* safari5.1+,chrome10+ */
+background: -o-linear-gradient(91deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* opera 11.10+ */
+background: -ms-linear-gradient(91deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* ie10+ */
+background: linear-gradient(359deg, rgba(28,28,28,0.6) 0%, rgba(0,0,0,1) 100%); /* w3c */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#1C1C1C',GradientType=0 ); /* ie6-9 */
 }
 
 .path-blip{

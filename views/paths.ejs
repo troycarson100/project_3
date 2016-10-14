@@ -1,9 +1,9 @@
-
+<h1>All Paths</h1><br>
 
 
 <% paths.forEach(function(p) { %>
-<%= p._by.local.name %>
-
+<div class="path_2_container">
+<h2><%= p._by.local.name %></h2><br>
 <a href="/paths/<%= p._id %>"><%= p.name %></a><br>
-
+</div>
 <% }) %>
