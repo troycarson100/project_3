@@ -1,5 +1,5 @@
 # pathLyfe
-### You're career is so much more than a resume
+### Your career is so much more than a resume
 _______
 ## ABOUT
 pathLyfe is an application for any career starter who has ever asked the question, "Where do I go from here?". On pathLyfe, users who have achieved career success in a particular field share the path that led them there, in whatever form it may have taken. Credit can be given to inpiring talks, helpful free resources, challenging tutorials, and of course, job experiences and education. Someone looking to break into a particular career field can then browse these paths, helping them determine their next steps.
