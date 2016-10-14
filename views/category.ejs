@@ -1,0 +1,9 @@
+
+    <h1><%=category%></h1>
+
+
+  <%paths.forEach(function(p){%>
+
+    <h4><%= p._by.local.name%></h4>
+    <a href="/paths/<%= p._id %>"><%= p.name %></a><br>
+  <% }) %>

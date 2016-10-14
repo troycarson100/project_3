@@ -17,7 +17,22 @@
           <ul class="nav navbar-nav">
             <li><a href="/paths">All Paths</a></li>
             <li><a  href="/search">Search Paths</a></li>
-          </ul>
+              <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/paths/category/WebDevelopment">Web Development</a></li>
+              <li><a href="/paths/category/Android">Android</a></li>
+              <li><a href="/paths/category/IOS">IOS</a></li>
+              <li><a href="/paths/category/UXDI">UXDI</a></li>
+              <li><a href="/paths/category/3DModeling">3DModeling</a></li>
+              <li><a href="/paths/category/Other">Other</a></li>
+            </ul>
+          </li>
+            </ul>
+
+
+
           <ul class="nav navbar-nav navbar-right">
             <%if(loggedIn) { %>
             <li class="dropdown">

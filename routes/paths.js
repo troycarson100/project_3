@@ -21,6 +21,7 @@ pathsRouter.post("/search", pathsController.search)
 // Search paths by their blips
 pathsRouter.post("/blips/search", pathsController.searchPathByBlips)
 
+pathsRouter.get('/paths/category/:category', pathsController.searchPathByCategory)
 
 
 // PATH'S BLIPS ROUTES =====================

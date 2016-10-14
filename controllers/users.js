@@ -55,10 +55,10 @@ function destroy(req,res){
 
 // create a path through the user id
 function createPath(req, res){
-  console.log(req)
   // first find the user by its _id:
   User.findById(req.params.id, function(err, user) {
     // then create an path object (not yet saved to the database):
+    console.log(req.body)
     var newPath = new Path(req.body)
     // store the aforementioned user's _id for this path's '_by' field:
     newPath._by = user._id

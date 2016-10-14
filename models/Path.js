@@ -18,6 +18,7 @@ var blipSchema = mongoose.Schema({
 var pathSchema = mongoose.Schema({
   _by: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   name: {type: String, required: true},
+  category: {type: String, required: true},
   blips: [blipSchema]
 })
 

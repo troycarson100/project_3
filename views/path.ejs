@@ -1,5 +1,8 @@
 
-  <h1><%= path.name %></h1>
+  <h1><%= path.name %> <span class="category"><a href="/paths/category/<%= path.category%>"><%= path.category %></a></span></h1>
+  <h4><%= path._by.local.name%></h4>
+  <br>
+
   <br>
 
 <%# IF CURRENT USER AND ITS THERE PATH, SHOW FORM FOR EDIT%>

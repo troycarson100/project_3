@@ -1,5 +1,5 @@
 var Path = require('../models/Path.js')
-
+var User = require('../models/User.js')
 module.exports = {
   index,
   create,
@@ -11,7 +11,8 @@ module.exports = {
   showBlip,
   destroyBlip,
   updateBlip,
-  searchPathByBlips
+  searchPathByBlips,
+  searchPathByCategory
 }
 
 // show all paths
@@ -142,3 +143,9 @@ function searchPathByBlips(req, res) {
       res.json(paths)
     })
   }
+function searchPathByCategory(req, res){
+  Path.find({category: req.params.category}).populate('_by').exec(function(err, paths) {
+    res.render('category',{paths: paths, category: req.params.category})
+
+  })
+}
