@@ -55,8 +55,11 @@ app.use(function(req, res, next){
 })
 
 app.get('/',function(req, res){
-  res.render('index')
+  res.render('index', {
+    noContainer: true
+  })
 })
+
 app.use('/', userRoutes)
 app.use('/', pathRoutes)
 // Renders a path search page

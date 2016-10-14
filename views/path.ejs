@@ -1,5 +1,4 @@
-
-  <h1><%= path.name %> <span class="category"><a href="/paths/category/<%= path.category%>"><%= path.category %></a></span></h1>
+<h1><%= path.name %> <span class="category"><a href="/paths/category/<%= path.category%>"><%= path.category %></a></span></h1>
   <h4><%= path._by.local.name%></h4>
   <br>
 
@@ -8,37 +7,27 @@
 <%# IF CURRENT USER AND ITS THERE PATH, SHOW FORM FOR EDIT%>
 
 <%if(loggedIn && currentUser.local.name == path._by.local.name) {%>
-
 <h2>Add Blip</h2>
 <%# CREATE BLIP FORM %>
   <div class="new-blip">
-
-
    <div class="form-group col-xs-3 col-md-3 top-marg">
        <input type="text" class="form-control " id="blipTitle" placeholder="Blip Name">
-
    <select class="selectpicker top-marg" id="blipDrop">
      <option>Select Type</option>
      <option>Education</option>
      <option>Resource</option>
      <option>Job</option>
    </select>
-
       <button type="submit" class="subPath btn btn-warning btn-lg" id="pathButton">Add Blip</button>
-
    </div>
    <div class="col-xs-2 col-md-2">
      <input type="text" class="form-control top-marg" id="blipYear" placeholder="Year">
    </div>
-
    <div class="form-group col-xs-7 col-md-7">
      <label for="description">Description/Tips</label>
        <textarea class="description-blip" rows="1" id="description">
      </textarea>
    </div>
-
-
-
 <% } %>
 
 <%# HIDDEN ID FOR PATH%>
@@ -57,7 +46,6 @@
         <%if(loggedIn && currentUser.local.name == path._by.local.name) { %>
           <button class="delete-btn" id='<%=b._id%>'> Delete</button><br>
         <% } %>
-
         <div class="bIcon">
           <%if(b.kind == "Resource") { %>
             <img src="/img/book-icon.png">
@@ -67,23 +55,17 @@
             <img src="/img/education.png">
           <% } %>
         </div>
-
         <br>
-
-
       </div>
       <br>
       <div class="mid-blip">
         <p><%= b.description %></p>
       </div>
-
       <div class="low-blip">
         <%= b.link %>
       </div>
     </div>
-
     <div class="yearBlip"><hr width="2" size="100"><%= b.year %><hr width="2" size="100"></div>
-
   </div>
   <% }) %>
   </div>
@@ -94,10 +76,7 @@ var $pathId = $('#pathId')
 var $blipId = $('#blipId')
 var $pathBtn = $('#pathButton')
 var $myBody = $('body')
-
-
 $myBody.on('click', '.delete-btn', function(){
-
 var $self = $(this)
   console.log("delete clicked!")
   var opts = {
@@ -109,16 +88,12 @@ var $self = $(this)
   }
   $.ajax(opts).done(cb)
 })
-
-
 $pathBtn.on('click', function(evt){
    evt.preventDefault();
    var $blipTitle = $('#blipTitle').val()
    var $description = $('#description').val()
    var $year = $('#blipYear').val()
    var $blipDrop = $('#blipDrop').val()
-
-
 var opts = {
   method: 'post',
   url: '/paths/'+$pathId.text()+'/blips',
@@ -134,7 +109,6 @@ var opts = {
     // console.log(data)
     blips = data.blips
     newBlip = blips[blips.length-1]
-
     var position = 0;
     $('.path-blip').each(function(index, blip){
       if (newBlip.year > $(blip).data('year')){
@@ -149,15 +123,9 @@ var opts = {
     } else if(newBlip.kind == "Education") {
       var icon = 'education.png'
     }
-
     console.log(icon)
-
  $('<div class="blipContainer" style="display:none"><div data-year="'+newBlip.year+'" class="path-blip"><div class="top-blip"><h4>'+ newBlip.title+ '</h4><%if(loggedIn && currentUser.local.name == path._by.local.name) { %><button class="delete-btn" id="'+newBlip._id+'"> Delete</button><br><% } %><div class="bIcon"><img src="/img/' + icon +  '"></div><br></div><br><div class="mid-blip"><p>'+newBlip.description+'</p></div><div class="low-blip">'+newBlip.link+'</div></div><div class="yearBlip"><hr width="2" size="100">'+newBlip.year+'<hr width="2"size="100"></div></div>').insertBefore($('.path-blip')[position]);
-
-
-
      $('.blipContainer').eq(position).slideDown();
-
      $('#blipTitle').val("")
      $('#description').val("")
      $('#blipYear').val("")
@@ -165,6 +133,4 @@ var opts = {
    }
 $.ajax(opts).done(cb)
 })
-
-
 </script>
