@@ -68,7 +68,7 @@ function search(req, res){
   // converts search term to a regex object / "i" allows case insensitivity
   var rx = new RegExp(req.body.name, "i")
     // finds a path with a name that matches the search term
-    Path.find({"name": rx}, function(err,data){
+    Path.find({"name": rx}).populate('_by').exec(function(err,data){
       if(err) return res.json(err)
       // returns that data to the client as a json object
       res.json(data)

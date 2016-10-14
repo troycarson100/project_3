@@ -82,7 +82,7 @@
       var newItem = $('<a>', {
           id: path['_id'],
           class: 'path_3_container search-result',
-          text: (path['name']),
+          text: (path._by.local['name']+ " " + path['name']),
           href: ('/paths/'+path['_id'])
         })
       var newBreak = $('<hr>')
